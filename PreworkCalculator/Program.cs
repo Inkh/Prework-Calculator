@@ -99,11 +99,11 @@ namespace PreworkCalculator
         static string Checker(string a)
         //Loops until the user inputs an acceptable format.
         {
-            do
+            while (!int.TryParse(a, out int res))
             {
                 WriteLine("That wasn't a valid number, try again: ");
                 a = ReadLine();
-            } while (!int.TryParse(a, out int res));
+            }
             return a;
         }
     }
