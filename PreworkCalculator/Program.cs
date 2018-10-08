@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Console;
 
 namespace PreworkCalculator
 {
@@ -6,40 +7,64 @@ namespace PreworkCalculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to your simple calculator!");
-            Console.WriteLine("Press 1 for addition, 2 for subtraction, 3 for multiplication, and 4 for division: ");
-            string userInput = Console.ReadLine();
-            int result;
+            WriteLine("Welcome to your simple calculator!");
+            WriteLine("Press 1 for addition, 2 for subtraction, 3 for multiplication, and 4 for division: ");
+            string userInput = ReadLine();
+            bool flag = false;
+
+            while (!flag)
+            {
+                flag = true;
+                if (!int.TryParse(userInput, out int result))
+                {
+                    WriteLine("That wasn't a number... Press 1 for addition, 2 for subtraction, 3 for multiplication, and 4 for division: ");
+                    userInput = ReadLine();
+                    flag = false;
+                }
+            }
+
+
 
             switch (int.Parse(userInput))
             {
                 case 1:
-                    Console.WriteLine("Addition it is! Input two numbers: ");
-                    string numOne = Console.ReadLine();
-                    Console.WriteLine($"{numOne} is your first number, now enter the other: ");
-                    string numTwo = Console.ReadLine();
-                    Console.WriteLine($"{numOne} + {numTwo} = {Add(int.Parse(numOne), int.Parse(numTwo))}");
+                    WriteLine("Addition it is! Input two numbers: ");
+                    string numOne = ReadLine();
+                    try
+                    {
+                        int.Parse(numOne);
+                    }
+                    catch (FormatException err)
+                    {
+                        WriteLine(err.Message);
+                    }
+                    WriteLine($"{numOne} is your first number, now enter the other: ");
+                    string numTwo = ReadLine();
+                    WriteLine($"{numOne} + {numTwo} = {Add(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 2:
-                    Console.WriteLine("Subtraction it is! Input two numbers: ");
-                    numOne = Console.ReadLine();
-                    Console.WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = Console.ReadLine();
-                    Console.WriteLine($"{numOne} - {numTwo} = {Subtract(int.Parse(numOne), int.Parse(numTwo))}");
+                    WriteLine("Subtraction it is! Input two numbers: ");
+                    numOne = ReadLine();
+                    WriteLine($"{numOne} is your first number, now enter the other: ");
+                    numTwo = ReadLine();
+                    WriteLine($"{numOne} - {numTwo} = {Subtract(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 3:
-                    Console.WriteLine("Multiplication it is! Input two numbers: ");
-                    numOne = Console.ReadLine();
-                    Console.WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = Console.ReadLine();
-                    Console.WriteLine($"{numOne} * {numTwo} = {Multiply(int.Parse(numOne), int.Parse(numTwo))}");
+                    WriteLine("Multiplication it is! Input two numbers: ");
+                    numOne = ReadLine();
+                    WriteLine($"{numOne} is your first number, now enter the other: ");
+                    numTwo = ReadLine();
+                    WriteLine($"{numOne} * {numTwo} = {Multiply(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 4:
-                    Console.WriteLine("Division it is! Input two numbers: ");
-                    numOne = Console.ReadLine();
-                    Console.WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = Console.ReadLine();
-                    Console.WriteLine($"{numOne} / {numTwo} = {Divide(int.Parse(numOne), int.Parse(numTwo))}");
+                    WriteLine("Division it is! Input two numbers: ");
+                    numOne = ReadLine();
+                    WriteLine($"{numOne} is your first number, now enter the other: ");
+                    numTwo = ReadLine();
+                    WriteLine($"{numOne} / {numTwo} = {Divide(int.Parse(numOne), int.Parse(numTwo))}");
+                    break;
+                default:
+                    WriteLine("You didn't choose any valid functionality. Calculator going back to sleep...");
                     break;
             }
         }
