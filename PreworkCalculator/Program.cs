@@ -12,28 +12,34 @@ namespace PreworkCalculator
             string userInput = ReadLine();
             bool flag = false;
 
+            //Using a while loop to check for correct format.
             while (!flag)
             {
+                //Flip flag to true automatically in case the format is correct.
                 flag = true;
                 if (!int.TryParse(userInput, out int result))
                 {
                     WriteLine("That wasn't a number... Press 1 for addition, 2 for subtraction, 3 for multiplication, and 4 for division: ");
                     userInput = ReadLine();
+                    //Flip flag to continue to another iteration of loop.
                     flag = false;
                 }
             }
 
 
-
+            //Switch case to check what operation the user wants to perform.
             switch (int.Parse(userInput))
             {
                 case 1:
                     WriteLine("Addition it is! Input two numbers: ");
+                    //Have the helper function check for correct format.
                     string numOne = Checker(ReadLine());
 
                     WriteLine($"{numOne} is your first number, now enter the other: ");
+                    //Helper function on second input.
                     string numTwo = Checker(ReadLine());
                    
+                    //Execute appropriate function for each case.
                     WriteLine($"{numOne} + {numTwo} = {Add(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 2:
@@ -64,6 +70,7 @@ namespace PreworkCalculator
                     WriteLine($"{numOne} / {numTwo} = {Divide(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 default:
+                    //If user didn't choose any valid number from menu, exit.
                     WriteLine("You didn't choose any valid functionality. Calculator going back to sleep...");
                     break;
             }
@@ -90,6 +97,7 @@ namespace PreworkCalculator
         }
 
         static string Checker(string a)
+        //Loops until the user inputs an acceptable format.
         {
             do
             {
