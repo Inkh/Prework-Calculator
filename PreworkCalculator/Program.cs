@@ -29,38 +29,38 @@ namespace PreworkCalculator
             {
                 case 1:
                     WriteLine("Addition it is! Input two numbers: ");
-                    string numOne = ReadLine();
-                    try
-                    {
-                        int.Parse(numOne);
-                    }
-                    catch (FormatException err)
-                    {
-                        WriteLine(err.Message);
-                    }
+                    string numOne = Checker(ReadLine());
+
                     WriteLine($"{numOne} is your first number, now enter the other: ");
-                    string numTwo = ReadLine();
+                    string numTwo = Checker(ReadLine());
+                   
                     WriteLine($"{numOne} + {numTwo} = {Add(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 2:
                     WriteLine("Subtraction it is! Input two numbers: ");
-                    numOne = ReadLine();
+                    numOne = Checker(ReadLine());
+
                     WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = ReadLine();
+                    numTwo = Checker(ReadLine());
+
                     WriteLine($"{numOne} - {numTwo} = {Subtract(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 3:
                     WriteLine("Multiplication it is! Input two numbers: ");
-                    numOne = ReadLine();
+                    numOne = Checker(ReadLine());
+
                     WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = ReadLine();
+                    numTwo = Checker(ReadLine());
+
                     WriteLine($"{numOne} * {numTwo} = {Multiply(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 case 4:
                     WriteLine("Division it is! Input two numbers: ");
-                    numOne = ReadLine();
+                    numOne = Checker(ReadLine());
+
                     WriteLine($"{numOne} is your first number, now enter the other: ");
-                    numTwo = ReadLine();
+                    numTwo = Checker(ReadLine());
+
                     WriteLine($"{numOne} / {numTwo} = {Divide(int.Parse(numOne), int.Parse(numTwo))}");
                     break;
                 default:
@@ -87,6 +87,16 @@ namespace PreworkCalculator
         static double Divide(int a, int b)
         {
             return (double)a/b;
+        }
+
+        static string Checker(string a)
+        {
+            do
+            {
+                WriteLine("That wasn't a valid number, try again: ");
+                a = ReadLine();
+            } while (!int.TryParse(a, out int res));
+            return a;
         }
     }
 }
